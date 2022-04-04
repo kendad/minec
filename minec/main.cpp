@@ -29,7 +29,7 @@ void main() {
 
 	//#######################################################################################################################
 	//create cube for render
-	Cube cube("Textures/wall.jpg", true, false);
+	Cube cube("Textures/minecraft.png", false,true);
 
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);

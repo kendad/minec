@@ -28,46 +28,26 @@ void Cube::configure() {
 
 	//bind the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(grassCube), grassCube, GL_STATIC_DRAW);
 
-	//bind the EBO
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, GL_STATIC_DRAW);
-
-	//Attribute configuration at 0
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	//Attribute configuration at 0-->vertex Positions
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	//Attribute configuration at 1
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	//Attribute configuration at 2-->texture coords
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-	//Attribute configuration at 2
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(2);
 
 
 	//unbind the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//unbind the VAO
 	glBindVertexArray(0);
-	//unbind the EBO-->always unbind this after unbinding VAO
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void Cube::activate() {
 	shader->use();
 	//set texture in shader.fs
 	texture->activate(shader->ID, "texture1", 0);
-	//set color in shader.fs
-	unsigned int objectColorLoc = glGetUniformLocation(shader->ID, "objectColor");
-	unsigned int lightColorLoc = glGetUniformLocation(shader->ID, "lightColor");
-	unsigned int lightPositionLoc = glGetUniformLocation(shader->ID, "lightPosition");
-	glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
-	glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
-	glUniform3f(lightPositionLoc, 1.0f, 1.0f, 1.0f);
-	glUniform3f(glGetUniformLocation(shader->ID, "material.diffuseColor"), 1.0f, 0.5f, 0.31f);
-	glUniform3f(glGetUniformLocation(shader->ID, "material.ambientColor"), 1.0f, 0.5f, 0.31f);
-	glUniform3f(glGetUniformLocation(shader->ID, "material.specularColor"), 0.5f, 0.5f, 0.5f);
-	glUniform1f(glGetUniformLocation(shader->ID, "material.shininess"), 32.0f);
 }
 
 void Cube::render() {
@@ -75,8 +55,7 @@ void Cube::render() {
 	activate();
 
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 36);//3 vertices makes a triangle
-	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 }
 
