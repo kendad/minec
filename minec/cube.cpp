@@ -10,6 +10,7 @@
 Cube::Cube(std::string textureFilePath, bool flip, bool hasAlpha) {
 	shader = new Shader("Shaders/shader.vs", "Shaders/shader.fs");
 	texture = new Texture(textureFilePath, flip, hasAlpha);
+	generateWorld();
 	configure();
 }
 
@@ -28,7 +29,7 @@ void Cube::configure() {
 
 	//bind the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(grassCube), grassCube, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, cubeVertexData.size()*sizeof(CubeVertex), &cubeVertexData[0], GL_STATIC_DRAW);
 
 	//Attribute configuration at 0-->vertex Positions
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -55,13 +56,13 @@ void Cube::render() {
 	activate();
 
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDrawArrays(GL_TRIANGLES, 0, cubeVertexData.size());
 	glBindVertexArray(0);
 }
 
 void Cube::update() {
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::rotate(model, (float)glfwGetTime() * glm::radians(20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 }

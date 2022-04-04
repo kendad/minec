@@ -1,4 +1,6 @@
 #pragma once
+#include "cube.h"
+#include <vector>
 
 //CUBE DATA
 const float grassCube[] = {
@@ -91,7 +93,16 @@ const float waterCube[] = {//flip texture when using water cube
     -0.5f,  0.5f,  0.5f,     0.0f, 0.33f, // bottom-left
 };
 
-const unsigned int indices[] = {  // note that we start from 0!
-    0, 1, 3,  // first Triangle
-    1, 2, 3   // second Triangle
+typedef struct CubeVertex {
+    float x;
+    float y;
+    float z;
+
+    float v;//texture-side-dir
+    float u;//texture-up-dir
 };
+
+extern std::vector<CubeVertex> cubeVertexData;
+
+void generateWorld();
+void updateCubeVertices(int x, int y, int z);
