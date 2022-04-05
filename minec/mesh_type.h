@@ -102,7 +102,12 @@ typedef struct CubeVertex {
     float u;//texture-up-dir
 };
 
+//Cube Vertices Data Structures
 extern std::vector<CubeVertex> cubeVertexData;
 
+//generate multiple Cube
 void generateWorld();
+//update individual vertices to generate multiple cubes
 void updateCubeVertices(int x, int y, int z);
+
+void kela(int x,int y,int z);
