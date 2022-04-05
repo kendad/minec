@@ -6,9 +6,9 @@
 std::vector<CubeVertex> cubeVertexData;
 
 void generateWorld() {
-	int sizeOfWorldX = 100;
-	int sizeOfWorldY = 100;
-	int sizeOfWorldZ = 100;
+	int sizeOfWorldX = 5;
+	int sizeOfWorldY = 5;
+	int sizeOfWorldZ = 5;
 	/*for (int x = 0; x < sizeOfWorldX; x++) {
 		for (int y = 0; y < sizeOfWorldY; y++) {
 			for (int z = 0; z < sizeOfWorldZ; z++) {
