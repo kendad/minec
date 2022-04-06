@@ -7,7 +7,7 @@ class PerlinNoise {
 public:
 	float* fNoiseSeed2D = nullptr;
 	int nOctaveCount = 4;//generate maps//change values to see different results//5 max---4
-	float fScalingBias = 4.0f;//increase(lesser features)----decrease(higher features) features---0.8f//default value keep at-->2.8f
+	float fScalingBias = 2.8f;//increase(lesser features)----decrease(higher features) features---0.8f//default value keep at-->2.8f
 	PerlinNoise(int w = 50,int h=50) {
 		width = w;
 		height = h;

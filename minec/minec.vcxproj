@@ -126,6 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\additional\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +152,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_widgets.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="glad.c" />
@@ -161,6 +169,15 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui-master\backends\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imconfig.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imgui.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imgui_internal.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_truetype.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="globals.h" />
