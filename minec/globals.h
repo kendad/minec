@@ -8,6 +8,8 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
+extern bool IS_MOUSE_CAPTURED;
+
 //window value created on intilization
 extern GLFWwindow* window;
 

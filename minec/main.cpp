@@ -43,6 +43,14 @@ void main() {
 	unsigned int projectionLoc = glGetUniformLocation(cube.getShaderID(), "projection");//for CUBE
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+	//Activate IMGUI
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window,true);
+	ImGui_ImplOpenGL3_Init("#version 330");
+
 	//render Loop
 	glEnable(GL_DEPTH_TEST);//enable depth testing
 	//glEnable(GL_CULL_FACE);
@@ -58,6 +66,10 @@ void main() {
 		//all render stuff goes here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//set up IMGUI for rendering
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 
 		//Update view Matrix
 		glm::mat4 view = glm::lookAt(gCamera->position, gCamera->position + gCamera->front, gCamera->up);
@@ -74,9 +86,22 @@ void main() {
 		cube.update();
 		cube.render();
 
+		//render IMGUI stuff here
+		ImGui::Begin("trial");
+		ImGui::Text("whats up brother");
+		ImGui::End();
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	//End IMGUI here
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	//exit
 	glfwTerminate();

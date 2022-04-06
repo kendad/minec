@@ -4,6 +4,8 @@
 
 #include "globals.h"
 
+bool IS_MOUSE_CAPTURED = true;
+
 GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
 
