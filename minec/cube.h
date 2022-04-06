@@ -20,12 +20,12 @@ public:
 	//activate the shader
 	void activate();
 
+	//update the VBO EBO attribPointers VAO
+	void configure();
+
 private:
 	Shader* shader;
 	Texture* texture;
 
 	unsigned int VBO, VAO, EBO;
-
-	//update the VBO EBO attribPointers VAO
-	void configure();
 };

@@ -75,4 +75,7 @@ void Camera::processMouseMovement(double xPos, double yPos, float sensitivity, f
 		updatedFront.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 		front = glm::normalize(updatedFront);
 	}
+	else {
+		firstTime = true;
+	}
 }

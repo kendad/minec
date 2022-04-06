@@ -14,6 +14,7 @@
 #include "texture.h"
 #include "camera.h"
 #include "cube.h"
+#include "mesh_type.h"
 
 //screen settings
 const int SCR_WIDTH = 800;
@@ -70,6 +71,13 @@ void main() {
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+		//change world terrain if scaling bias change
+		if (checkScalingBias()) {
+			cubeVertexData.clear();
+			generateWorld();
+			cube.configure();
+		}
+
 
 		//Update view Matrix
 		glm::mat4 view = glm::lookAt(gCamera->position, gCamera->position + gCamera->front, gCamera->up);
@@ -87,8 +95,8 @@ void main() {
 		cube.render();
 
 		//render IMGUI stuff here
-		ImGui::Begin("trial");
-		ImGui::Text("whats up brother");
+		ImGui::Begin("Controls");
+		ImGui::SliderFloat("ScalingBias", &SCALING_BIAS, 0, 10);
 		ImGui::End();
 
 		ImGui::Render();

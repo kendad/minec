@@ -10,6 +10,9 @@ const int SCREEN_HEIGHT = 600;
 
 extern bool IS_MOUSE_CAPTURED;
 
+extern float SCALING_BIAS;
+extern float SCALING_BIAS_PREV;
+
 //window value created on intilization
 extern GLFWwindow* window;
 
@@ -29,3 +32,5 @@ extern void processInput(GLFWwindow* window, float& deltaTime);
 //mouse callback function
 extern void mouse_callback(GLFWwindow* window, double xPos, double yPos);
 //#######################################################################################################################
+//check if the ScalingBias has changed
+bool checkScalingBias();

@@ -6,6 +6,9 @@
 
 bool IS_MOUSE_CAPTURED = true;
 
+float SCALING_BIAS = 2.8f;
+float SCALING_BIAS_PREV = SCALING_BIAS;
+
 GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
 
@@ -59,3 +62,8 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
 	gCamera->processMouseMovement(xPos, yPos);
 }
 //#######################################################################################################################
+
+bool checkScalingBias() {
+	if (SCALING_BIAS == SCALING_BIAS_PREV) { return false; }
+	if (SCALING_BIAS != SCALING_BIAS_PREV) { SCALING_BIAS_PREV = SCALING_BIAS; return true; }
+}

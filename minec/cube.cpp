@@ -10,6 +10,7 @@
 Cube::Cube(std::string textureFilePath, bool flip, bool hasAlpha) {
 	shader = new Shader("Shaders/shader.vs", "Shaders/shader.fs");
 	texture = new Texture(textureFilePath, flip, hasAlpha);
+
 	generateWorld();
 	configure();
 }
