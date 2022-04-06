@@ -165,6 +165,7 @@
     <ClInclude Include="cube.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="mesh_type.h" />
+    <ClInclude Include="perlin_noise.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texture.h" />

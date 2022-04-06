@@ -1,16 +1,26 @@
 #include "mesh_type.h"
 #include <iostream>
 #include <algorithm>
-
+#include "perlin_noise.h"
 
 std::vector<CubeVertex> cubeVertexData;
+
+//Algorithm to find the average value in a floats array
+float avegareInArray(float array[], int sizeOfArray, int roundingFactor) {
+	float total = 0;
+	for (int i = 0; i < sizeOfArray; i++) {
+		total += array[i];
+	}
+	return (total / sizeOfArray) * roundingFactor;
+}
 
 void generateWorld() {
 	int sizeOfWorldX = 4;
 	int sizeOfWorldY = 4;
 	int sizeOfWorldZ = 4;
 	//updateCubeVertices(sizeOfWorldX,sizeOfWorldY,sizeOfWorldZ);
-	updateCubeVertices_randomNoise();
+	//updateCubeVertices_randomNoise();
+	updateCubeVertices_perlinNoise();
 }
 
 void updateCubeVertices(int x,int y,int z) {
@@ -66,4 +76,23 @@ void updateCubeVertices_randomNoise() {
 			}
 		}
 	}
+}
+
+void updateCubeVertices_perlinNoise() {
+	int width = 100; int height = 100;
+	int roundingFactor = 100;
+	PerlinNoise noise(width,height);
+	int avgHeight = (int)avegareInArray(fPerlinNoise2D, width * height, roundingFactor);
+	int tmp = 0;
+	for (int x = 0; x < 100; x++) {
+		for (int z = 0; z < 100; z++) {
+			int height = round(fPerlinNoise2D[tmp] * roundingFactor);
+			for (int y = 0; y < height; y++) {
+				if (height <= (avgHeight-2) && x > 0 && x < 100-2 && z>0 && z < 100-2) sUpdateCubeVertices(0, sizeof(grassCube) / sizeof(grassCube[0]), x, y, z, "WATER");
+				else sUpdateCubeVertices(0, sizeof(grassCube) / sizeof(grassCube[0]), x, y, z, "GRASS");
+			}
+			tmp++;
+		}
+	}
+
 }
