@@ -1,5 +1,6 @@
 #include "camera.h"
 #include "globals.h"
+#include "mesh_type.h"
 
 Camera::Camera(GLFWwindow* _window, glm::vec3 _position, float _yaw, float _pitch, float _lastX, float _lastY) {
 	window = _window;
@@ -77,5 +78,24 @@ void Camera::processMouseMovement(double xPos, double yPos, float sensitivity, f
 	}
 	else {
 		firstTime = true;
+	}
+}
+
+void Camera::raycast() {
+	glm::vec3 ray = position + (front*3.5f);//generate ray from camera and scale it to x val:-default=3.5f
+	//go through the vertices vector data and check if the rays position is inside any of the cubes
+	for (int i = 0; i < cubeVertexData.size(); i += 36) {
+		//top-right of the top face
+		glm::vec3 max = glm::vec3(cubeVertexData[i + 32].x, cubeVertexData[i + 32].y, cubeVertexData[i + 32].z);
+		//bottom right of my bottom face
+		glm::vec3 min = glm::vec3(cubeVertexData[i + 28].x, cubeVertexData[i + 28].y, cubeVertexData[i + 28].z);
+		//check if ray position lies inside the cube
+		bool condition1 = min.x <= ray.x && ray.x <= max.x;
+		bool condition2 = min.y <= ray.y && ray.y <= max.y;
+		bool condition3 = max.z <= ray.z && ray.z <= min.z;
+		//if all conditions are TRUE then collision has been detected at psoition 'i'
+		if (condition1 == true && condition2 == true && condition3 == true) {
+			std::cout << "hit detected at:-> "<< i << std::endl;
+		}
 	}
 }

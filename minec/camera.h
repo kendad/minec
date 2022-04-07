@@ -15,6 +15,10 @@ public:
 	Camera(GLFWwindow* _window, glm::vec3 _position, float _yaw, float _pitch, float _lastX, float _lastY);
 	void processKeyboardInput(float& deltaTime);
 	void processMouseMovement(double xPos, double yPos, float sensitivity = 0.1f, float pitchLimit = 89.0f);
+
+	//raycast for object detection
+	void raycast();
+
 private:
 	float yaw;
 	float pitch;
