@@ -103,7 +103,7 @@ void Camera::raycast(eCube& cube) {
 			RAYCAST_ITERATOR = 0.5;//reset Raycast iterator
 		}
 	}
-	RAYCAST_ITERATOR += 0.5;
+	RAYCAST_ITERATOR += 1;
 	if (RAYCAST_ITERATOR >= 30) RAYCAST_ITERATOR = 0.5;
 }
 
@@ -114,8 +114,8 @@ void transparentBlock(int location,eCube& cube) {
 		tempVertex.x = cubeVertexData[location + i].x;
 		tempVertex.y = cubeVertexData[location + i].y;
 		tempVertex.z = cubeVertexData[location + i].z;
-		tempVertex.u = 0;
-		tempVertex.v = 0;
+		tempVertex.u = cubeVertexData[location + i].u;
+		tempVertex.v = cubeVertexData[location + i].v;
 		editableCubeVertexData.push_back(tempVertex);
 	}
 	cube.configure();

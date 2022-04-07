@@ -69,7 +69,7 @@ void main() {
 
 		//process user input
 		processInput(window, deltaTime);
-		camera.raycast(eCube);
+		//camera.raycast(eCube);
 
 		//all render stuff goes here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

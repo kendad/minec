@@ -60,7 +60,7 @@ void eCube::render() {
 void eCube::update() {
 	glm::mat4 model = glm::mat4(1.0f);
 	//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(1.03f,1.03f,1.03f));
+	model = glm::scale(model, glm::vec3(1.01f,1.01f,1.01f));
 	unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 }
