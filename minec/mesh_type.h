@@ -5,7 +5,7 @@
 //CUBE DATA
 const float grassCube[] = {
     // Back face
-    -0.5f, -0.5f, -0.5f,     0.0f, 0.33f,  // Bottom-left 0.0f 0.6
+    -0.5f, -0.5f, -0.5f,     0.0f, 0.33f, // Bottom-left 0.0f 0.6
      0.5f,  0.5f, -0.5f,     1.0f, 0.0f, // top-right  1.0f 1.0f
      0.5f, -0.5f, -0.5f,     1.0f, 0.33f, // bottom-right 1.0f 0.6f      
      0.5f,  0.5f, -0.5f,     1.0f, 0.0f, // top-right   1.0f 1.0f
@@ -45,7 +45,7 @@ const float grassCube[] = {
      0.5f,  0.5f, -0.5f,     1.0f, 0.6f, // top-right     
      0.5f,  0.5f,  0.5f,     1.0f, 0.4f, // bottom-right
     -0.5f,  0.5f, -0.5f,     0.0f, 0.6f, // top-left
-    -0.5f,  0.5f,  0.5f,     0.0f, 0.4f, // bottom-left
+    -0.5f,  0.5f,  0.5f,     0.0f, 0.4f // bottom-left
 };
 
 const float waterCube[] = {//water cube Vertices
@@ -104,6 +104,7 @@ typedef struct CubeVertex {
 
 //Vector Vertices Cube Data Structures
 extern std::vector<CubeVertex> cubeVertexData;
+extern std::vector<CubeVertex> editableCubeVertexData;
 
 //generate multiple Cube
 void generateWorld();

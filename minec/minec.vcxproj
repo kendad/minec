@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_widgets.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
+    <ClCompile Include="edit_cube.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="main.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_truetype.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
+    <ClInclude Include="edit_cube.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="mesh_type.h" />
     <ClInclude Include="perlin_noise.h" />

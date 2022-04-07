@@ -14,6 +14,7 @@
 #include "texture.h"
 #include "camera.h"
 #include "cube.h"
+#include "edit_cube.h"
 #include "mesh_type.h"
 
 //screen settings
@@ -35,6 +36,7 @@ void main() {
 	//#######################################################################################################################
 	//create cube for render
 	Cube cube("Textures/minecraft.png", false,true);
+	eCube eCube("Textures/minecraft.png", false, true);
 
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
@@ -42,6 +44,10 @@ void main() {
 	//set projection for CUBE
 	cube.activate();
 	unsigned int projectionLoc = glGetUniformLocation(cube.getShaderID(), "projection");//for CUBE
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+	//set projection for eCUBE
+	eCube.activate();
+	projectionLoc = glGetUniformLocation(eCube.getShaderID(), "projection");//for eCUBE
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
 	//Activate IMGUI
@@ -63,7 +69,7 @@ void main() {
 
 		//process user input
 		processInput(window, deltaTime);
-		camera.raycast();
+		camera.raycast(eCube);
 
 		//all render stuff goes here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -86,14 +92,22 @@ void main() {
 		cube.activate();
 		unsigned int viewLoc = glGetUniformLocation(cube.getShaderID(), "view");//for CUBE
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		unsigned int cameraPos = glGetUniformLocation(cube.getShaderID(), "cameraPos");
-		glUniform3fv(cameraPos, 1, glm::value_ptr(gCamera->position));
+		//set view for eCUBE
+		eCube.activate();
+		viewLoc = glGetUniformLocation(eCube.getShaderID(), "view");//for eCUBE
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		
 
 		//draw stuff here
 		//update and render cube
+		//-->CUBE
 		cube.activate();
 		cube.update();
 		cube.render();
+		//-->eCube
+		eCube.activate();
+		eCube.update();
+		eCube.render();
 
 		//render IMGUI stuff here
 		ImGui::Begin("Controls");

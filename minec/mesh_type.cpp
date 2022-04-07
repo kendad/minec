@@ -4,6 +4,7 @@
 #include "perlin_noise.h"
 
 std::vector<CubeVertex> cubeVertexData;
+std::vector<CubeVertex> editableCubeVertexData;
 
 //Algorithm to find the average value in a floats array
 float avegareInArray(float array[], int sizeOfArray, int roundingFactor) {

@@ -6,9 +6,9 @@
 #include "texture.h"
 #include "mesh_type.h"
 
-class Cube {
+class eCube {
 public:
-	Cube(std::string textureFilePath, bool flip, bool hasAlpha);
+	eCube(std::string textureFilePath, bool flip, bool hasAlpha);
 
 	//update the cube data
 	void update();

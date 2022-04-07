@@ -2,6 +2,10 @@
 #include "globals.h"
 #include "mesh_type.h"
 
+//Create a block with transperency
+void transparentBlock(int location,eCube& cube);
+
+
 Camera::Camera(GLFWwindow* _window, glm::vec3 _position, float _yaw, float _pitch, float _lastX, float _lastY) {
 	window = _window;
 
@@ -81,8 +85,8 @@ void Camera::processMouseMovement(double xPos, double yPos, float sensitivity, f
 	}
 }
 
-void Camera::raycast() {
-	glm::vec3 ray = position + (front*3.5f);//generate ray from camera and scale it to x val:-default=3.5f
+void Camera::raycast(eCube& cube) {
+	glm::vec3 ray = position + (front * RAYCAST_ITERATOR);//generate ray from camera and scale it to x val:-default=3.5f
 	//go through the vertices vector data and check if the rays position is inside any of the cubes
 	for (int i = 0; i < cubeVertexData.size(); i += 36) {
 		//top-right of the top face
@@ -95,7 +99,24 @@ void Camera::raycast() {
 		bool condition3 = max.z <= ray.z && ray.z <= min.z;
 		//if all conditions are TRUE then collision has been detected at psoition 'i'
 		if (condition1 == true && condition2 == true && condition3 == true) {
-			std::cout << "hit detected at:-> "<< i << std::endl;
+			transparentBlock(i, cube);
+			RAYCAST_ITERATOR = 0.5;//reset Raycast iterator
 		}
 	}
+	RAYCAST_ITERATOR += 0.5;
+	if (RAYCAST_ITERATOR >= 30) RAYCAST_ITERATOR = 0.5;
+}
+
+void transparentBlock(int location,eCube& cube) {
+	editableCubeVertexData.clear();
+	for (int i = 0; i < 36; i++) {
+		CubeVertex tempVertex;
+		tempVertex.x = cubeVertexData[location + i].x;
+		tempVertex.y = cubeVertexData[location + i].y;
+		tempVertex.z = cubeVertexData[location + i].z;
+		tempVertex.u = 0;
+		tempVertex.v = 0;
+		editableCubeVertexData.push_back(tempVertex);
+	}
+	cube.configure();
 }

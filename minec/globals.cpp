@@ -9,6 +9,8 @@ bool IS_MOUSE_CAPTURED = true;
 float SCALING_BIAS = 2.8f;
 float SCALING_BIAS_PREV = SCALING_BIAS;
 
+float RAYCAST_ITERATOR = 0.5;
+
 GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
 

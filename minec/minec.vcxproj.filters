@@ -66,6 +66,9 @@
     <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_widgets.cpp">
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="edit_cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Libraries\imgui-master\imgui-master\backends\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="edit_cube.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

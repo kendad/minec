@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "edit_cube.h"
 
 class Camera {
 public:
@@ -17,7 +18,7 @@ public:
 	void processMouseMovement(double xPos, double yPos, float sensitivity = 0.1f, float pitchLimit = 89.0f);
 
 	//raycast for object detection
-	void raycast();
+	void raycast(eCube& cube);
 
 private:
 	float yaw;

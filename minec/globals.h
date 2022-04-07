@@ -13,6 +13,8 @@ extern bool IS_MOUSE_CAPTURED;
 extern float SCALING_BIAS;
 extern float SCALING_BIAS_PREV;
 
+extern float RAYCAST_ITERATOR;
+
 //window value created on intilization
 extern GLFWwindow* window;
 

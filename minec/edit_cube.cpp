@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "edit_cube.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -6,17 +6,14 @@
 
 #include <iostream>
 
-Cube::Cube(std::string textureFilePath, bool flip, bool hasAlpha) {
-	shader = new Shader("Shaders/shader.vs", "Shaders/shader.fs");
+eCube::eCube(std::string textureFilePath, bool flip, bool hasAlpha) {
+	shader = new Shader("Shaders/editableCubeShader.vs", "Shaders/editableCubeShader.fs");
 	texture = new Texture(textureFilePath, flip, hasAlpha);
-
-	generateWorld();
-	configure();
 }
 
-unsigned int Cube::getShaderID() { return shader->ID; }
+unsigned int eCube::getShaderID() { return shader->ID; }
 
-void Cube::configure() {
+void eCube::configure() {
 	//activate the shader first before binding the buffers
 	shader->use();
 	//generate the buffers
@@ -29,7 +26,7 @@ void Cube::configure() {
 
 	//bind the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, cubeVertexData.size()*sizeof(CubeVertex), &cubeVertexData[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, editableCubeVertexData.size() * sizeof(CubeVertex), &editableCubeVertexData[0], GL_STATIC_DRAW);
 
 	//Attribute configuration at 0-->vertex Positions
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -45,24 +42,25 @@ void Cube::configure() {
 	glBindVertexArray(0);
 }
 
-void Cube::activate() {
+void eCube::activate() {
 	shader->use();
 	//set texture in shader.fs
 	texture->activate(shader->ID, "texture1", 0);
 }
 
-void Cube::render() {
+void eCube::render() {
 	//activate the shader for use and also update the texture units
 	activate();
 
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, cubeVertexData.size());
+	glDrawArrays(GL_TRIANGLES, 0, editableCubeVertexData.size());
 	glBindVertexArray(0);
 }
 
-void Cube::update() {
+void eCube::update() {
 	glm::mat4 model = glm::mat4(1.0f);
 	//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(1.03f,1.03f,1.03f));
 	unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 }
