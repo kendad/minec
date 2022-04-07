@@ -15,6 +15,7 @@
 #include "camera.h"
 #include "cube.h"
 #include "edit_cube.h"
+#include "crosshair.h"
 #include "mesh_type.h"
 
 //screen settings
@@ -37,6 +38,8 @@ void main() {
 	//create cube for render
 	Cube cube("Textures/minecraft.png", false,true);
 	eCube eCube("Textures/minecraft.png", false, true);
+	//create Crosshair
+	Crosshair crosshair;
 
 	//projection matrix
 	glm::mat4 projection = glm::mat4(1.0f);
@@ -49,6 +52,10 @@ void main() {
 	eCube.activate();
 	projectionLoc = glGetUniformLocation(eCube.getShaderID(), "projection");//for eCUBE
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+	//set projection for CROSSHAIR
+	crosshair.activate();
+	projectionLoc = glGetUniformLocation(crosshair.getShaderID(), "projection");//for CROSSHAIR
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
 	//Activate IMGUI
 	IMGUI_CHECKVERSION();
@@ -60,6 +67,8 @@ void main() {
 
 	//render Loop
 	glEnable(GL_DEPTH_TEST);//enable depth testing
+	glEnable(GL_BLEND);//enable PNG transperency
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glEnable(GL_CULL_FACE);
 	while (!glfwWindowShouldClose(window)) {
 		//get time
@@ -96,6 +105,10 @@ void main() {
 		eCube.activate();
 		viewLoc = glGetUniformLocation(eCube.getShaderID(), "view");//for eCUBE
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//set view for Crosshair
+		crosshair.activate();
+		viewLoc = glGetUniformLocation(crosshair.getShaderID(), "view");//for CROSSHAIR
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
 		
 
 		//draw stuff here
@@ -108,6 +121,10 @@ void main() {
 		eCube.activate();
 		eCube.update();
 		eCube.render();
+		//--crosshair
+		crosshair.activate();
+		crosshair.update();
+		crosshair.render();
 
 		//render IMGUI stuff here
 		ImGui::Begin("Controls");

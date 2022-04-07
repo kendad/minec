@@ -160,6 +160,7 @@
     <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\..\Libraries\imgui-master\imgui\imgui_widgets.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="crosshair.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="edit_cube.cpp" />
     <ClCompile Include="glad.c" />
@@ -180,6 +181,7 @@
     <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\..\Libraries\imgui-master\imgui\imstb_truetype.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="crosshair.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="edit_cube.h" />
     <ClInclude Include="globals.h" />

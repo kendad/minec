@@ -2,6 +2,17 @@
 #include "cube.h"
 #include <vector>
 
+//CROSSHAIR PLANE DATA
+const float crosshairPlane[] = {
+    -0.02f, -0.02f, -1.0f,     0.0f, 0.0f, // Bottom-left 0.0f 0.6
+     0.02f,  0.02f, -1.0f,     1.0f, 1.0f, // top-right  1.0f 1.0f
+     0.02f, -0.02f, -1.0f,     1.0f, 0.0f, // bottom-right 1.0f 0.6f      
+     0.02f,  0.02f, -1.0f,     1.0f, 1.0f, // top-right   1.0f 1.0f
+    -0.02f, -0.02f, -1.0f,     0.0f, 0.0f, // bottom-left 0.0f 0.6f 
+    -0.02f,  0.02f, -1.0f,     0.0f, 1.0f, // top-left    0.0f 1.0f
+};
+
+
 //CUBE DATA
 const float grassCube[] = {
     // Back face
