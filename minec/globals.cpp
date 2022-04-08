@@ -15,6 +15,10 @@ GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
 mCube* gMCube = nullptr;
 
+int X_OFFSET=1;
+int Y_OFFSET=0;
+int Z_OFFSET=0;
+
 void INIT() {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -38,6 +42,8 @@ void INIT() {
 	glfwSetCursorPosCallback(window, mouse_callback);
 	//set mouse click callback
 	glfwSetMouseButtonCallback(window, mouse_click_callback);
+	//set mouse scroll callback
+	glfwSetScrollCallback(window, mouse_scroll_callback);
 	//set keyboard input callback
 	glfwSetKeyCallback(window, keyboard_input_callback);
 
@@ -75,12 +81,37 @@ void mouse_click_callback(GLFWwindow* window,int button, int action, int mods) {
 	}
 }
 
+void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+	if (X_OFFSET != 0) {
+		if (yoffset > 0) X_OFFSET = 1;
+		if (yoffset < 0) X_OFFSET = -1;
+	}
+	if (Y_OFFSET != 0) {
+		if (yoffset > 0) Y_OFFSET = 1;
+		if (yoffset < 0) Y_OFFSET = -1;
+	}
+	if (Z_OFFSET != 0) {
+		if (yoffset > 0) Z_OFFSET = 1;
+		if (yoffset < 0) Z_OFFSET = -1;
+	}
+}
+
 void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	//set mouse Cursor Mode
 	if (key == GLFW_KEY_M && action == GLFW_PRESS) {
 		IS_MOUSE_CAPTURED = !IS_MOUSE_CAPTURED;
 		if (IS_MOUSE_CAPTURED) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		else glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+	//set which direction we want to modify
+	if (key == GLFW_KEY_Z && action == GLFW_PRESS) {
+		Z_OFFSET = 1; X_OFFSET = 0; Y_OFFSET = 0;
+	}
+	if (key == GLFW_KEY_X && action == GLFW_PRESS) {
+		X_OFFSET = 1; Z_OFFSET = 0; Y_OFFSET = 0;
+	}
+	if (key == GLFW_KEY_Y && action == GLFW_PRESS) {
+		Y_OFFSET = 1; X_OFFSET = 0; Z_OFFSET = 0;
 	}
 }
 //#######################################################################################################################

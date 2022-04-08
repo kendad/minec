@@ -26,6 +26,10 @@ extern mCube* gMCube;
 //intialize GLFW for processing
 extern void INIT();
 
+//Varibales to control Modified Cube Offser
+extern int X_OFFSET;
+extern int Y_OFFSET;
+extern int Z_OFFSET;
 
 //#######################################################################################################################
 // CALLBACK FUNCTIONS
@@ -38,6 +42,8 @@ extern void processInput(GLFWwindow* window, float& deltaTime);
 extern void mouse_callback(GLFWwindow* window, double xPos, double yPos);
 //mouse click callback function
 extern void mouse_click_callback(GLFWwindow* window,int button, int action, int mods);
+//mouse scroll callback
+extern void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 //keyboard input callback function
 extern void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 //#######################################################################################################################
