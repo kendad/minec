@@ -13,6 +13,7 @@ float RAYCAST_ITERATOR = 0.5;
 
 GLFWwindow* window = nullptr;
 Camera* gCamera = nullptr;
+mCube* gMCube = nullptr;
 
 void INIT() {
 	glfwInit();
@@ -70,7 +71,7 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
 
 void mouse_click_callback(GLFWwindow* window,int button, int action, int mods) {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-		std::cout << "Me pressed" << std::endl;
+		gCamera->modifyWorld();
 	}
 }
 
@@ -83,8 +84,7 @@ void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int acti
 	}
 }
 //#######################################################################################################################
-
-bool checkScalingBias() {
+bool checkScalingBias() {//-->change scaling bias value in order to change terrain from IMGUI
 	if (SCALING_BIAS == SCALING_BIAS_PREV) { return false; }
 	if (SCALING_BIAS != SCALING_BIAS_PREV) { SCALING_BIAS_PREV = SCALING_BIAS; return true; }
 }

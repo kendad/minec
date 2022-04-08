@@ -167,6 +167,7 @@
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesh_type.cpp" />
+    <ClCompile Include="mod_cube.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
@@ -186,6 +187,7 @@
     <ClInclude Include="edit_cube.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="mesh_type.h" />
+    <ClInclude Include="mod_cube.h" />
     <ClInclude Include="perlin_noise.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="stb_image.h" />

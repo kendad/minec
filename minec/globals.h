@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "camera.h"
+#include "mod_cube.h"
 
 
 const int SCREEN_WIDTH = 800;
@@ -19,6 +20,8 @@ extern float RAYCAST_ITERATOR;
 extern GLFWwindow* window;
 
 extern Camera* gCamera;
+
+extern mCube* gMCube;
 
 //intialize GLFW for processing
 extern void INIT();
@@ -38,5 +41,6 @@ extern void mouse_click_callback(GLFWwindow* window,int button, int action, int 
 //keyboard input callback function
 extern void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 //#######################################################################################################################
+
 //check if the ScalingBias has changed
 bool checkScalingBias();

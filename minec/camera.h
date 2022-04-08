@@ -20,6 +20,9 @@ public:
 	//raycast for object detection
 	void raycast(eCube& cube);
 
+	//modify world on mouse click
+	void modifyWorld();
+
 private:
 	float yaw;
 	float pitch;

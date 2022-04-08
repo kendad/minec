@@ -5,6 +5,7 @@
 
 std::vector<CubeVertex> cubeVertexData;
 std::vector<CubeVertex> editableCubeVertexData;
+std::vector<CubeVertex> modifiedCubeVertexData;
 
 //Algorithm to find the average value in a floats array
 float avegareInArray(float array[], int sizeOfArray, int roundingFactor) {

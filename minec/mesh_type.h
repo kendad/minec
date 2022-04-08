@@ -114,8 +114,9 @@ typedef struct CubeVertex {
 };
 
 //Vector Vertices Cube Data Structures
-extern std::vector<CubeVertex> cubeVertexData;
-extern std::vector<CubeVertex> editableCubeVertexData;
+extern std::vector<CubeVertex> cubeVertexData;//stores the vertices of cube for world generation
+extern std::vector<CubeVertex> editableCubeVertexData;//stores the vertices of cube for raycast detection
+extern std::vector<CubeVertex> modifiedCubeVertexData;//stores the vertices of cube once modified(gameplay)
 
 //generate multiple Cube
 void generateWorld();

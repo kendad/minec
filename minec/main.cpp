@@ -15,6 +15,7 @@
 #include "camera.h"
 #include "cube.h"
 #include "edit_cube.h"
+#include "mod_cube.h"
 #include "crosshair.h"
 #include "mesh_type.h"
 
@@ -38,6 +39,8 @@ void main() {
 	//create cube for render
 	Cube cube("Textures/minecraft.png", false,true);
 	eCube eCube("Textures/minecraft.png", false, true);
+	mCube mCube("Textures/minecraft.png", false, true);
+	gMCube = &mCube;//point to the global mCube Value-->used in modifyWorld func in camera.h
 	//create Crosshair
 	Crosshair crosshair;
 
@@ -51,6 +54,10 @@ void main() {
 	//set projection for eCUBE
 	eCube.activate();
 	projectionLoc = glGetUniformLocation(eCube.getShaderID(), "projection");//for eCUBE
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+	//set projection for mCUBE
+	mCube.activate();
+	projectionLoc = glGetUniformLocation(mCube.getShaderID(), "projection");//for mCUBE
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 	//set projection for CROSSHAIR
 	crosshair.activate();
@@ -105,6 +112,10 @@ void main() {
 		eCube.activate();
 		viewLoc = glGetUniformLocation(eCube.getShaderID(), "view");//for eCUBE
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//set view for mCUBE
+		mCube.activate();
+		viewLoc = glGetUniformLocation(mCube.getShaderID(), "view");//for mCUBE
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		//set view for Crosshair
 		crosshair.activate();
 		viewLoc = glGetUniformLocation(crosshair.getShaderID(), "view");//for CROSSHAIR
@@ -117,6 +128,11 @@ void main() {
 		eCube.activate();
 		eCube.update();
 		eCube.render();
+
+		// -->mCube
+		mCube.activate();
+		mCube.update();
+		mCube.render();
 
 		//-->CUBE
 		cube.activate();
