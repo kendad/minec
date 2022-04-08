@@ -147,6 +147,16 @@ void transparentBlock(int location,eCube& cube) {
 		}
 	}
 
+	for (int i = 0; i < 36; i++) {
+		CubeVertex tempVertex;
+		tempVertex.x = editableCubeVertexData[i].x+X_OFFSET;
+		tempVertex.y = editableCubeVertexData[i].y+Y_OFFSET;
+		tempVertex.z = editableCubeVertexData[i].z+Z_OFFSET;
+		tempVertex.u = editableCubeVertexData[i].u;
+		tempVertex.v = editableCubeVertexData[i].v;
+		editableCubeVertexData.push_back(tempVertex);
+	}
+
 	cube.configure();
 }
 
@@ -155,9 +165,9 @@ void Camera::modifyWorld() {
 		if (vectorName == "WORLD") {
 			for (int i = 0; i < 36; i++) {
 				CubeVertex tempVertex;
-				tempVertex.x = cubeVertexData[gLocation + i].x+X_OFFSET;
-				tempVertex.y = cubeVertexData[gLocation + i].y+Y_OFFSET;
-				tempVertex.z = cubeVertexData[gLocation + i].z+Z_OFFSET;
+				tempVertex.x = cubeVertexData[gLocation + i].x + X_OFFSET;
+				tempVertex.y = cubeVertexData[gLocation + i].y + Y_OFFSET;
+				tempVertex.z = cubeVertexData[gLocation + i].z + Z_OFFSET;
 				tempVertex.u = cubeVertexData[gLocation + i].u;
 				tempVertex.v = cubeVertexData[gLocation + i].v;
 
@@ -167,9 +177,9 @@ void Camera::modifyWorld() {
 		if (vectorName == "MOD") {
 			for (int i = 0; i < 36; i++) {
 				CubeVertex tempVertex;
-				tempVertex.x = modifiedCubeVertexData[gLocation + i].x+X_OFFSET;
-				tempVertex.y = modifiedCubeVertexData[gLocation + i].y+Y_OFFSET;
-				tempVertex.z = modifiedCubeVertexData[gLocation + i].z+Z_OFFSET;
+				tempVertex.x = modifiedCubeVertexData[gLocation + i].x + X_OFFSET;
+				tempVertex.y = modifiedCubeVertexData[gLocation + i].y + Y_OFFSET;
+				tempVertex.z = modifiedCubeVertexData[gLocation + i].z + Z_OFFSET;
 				tempVertex.u = modifiedCubeVertexData[gLocation + i].u;
 				tempVertex.v = modifiedCubeVertexData[gLocation + i].v;
 
