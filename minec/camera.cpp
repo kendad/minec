@@ -42,13 +42,6 @@ void Camera::processKeyboardInput(float& deltaTime) {
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
 		position += glm::normalize(glm::cross(front, up)) * cameraSpeed;
 	}
-
-	//set mouse Cursor Mode
-	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
-		IS_MOUSE_CAPTURED = !IS_MOUSE_CAPTURED;
-		if (IS_MOUSE_CAPTURED) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		else glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-	}
 }
 
 void Camera::processMouseMovement(double xPos, double yPos, float sensitivity, float pitchLimit) {

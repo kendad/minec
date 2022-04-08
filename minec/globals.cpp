@@ -33,8 +33,12 @@ void INIT() {
 	glfwMakeContextCurrent(window);
 	//resize the window when users changes screen size
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	//set mouse callback
+	//set mouse cursor callback
 	glfwSetCursorPosCallback(window, mouse_callback);
+	//set mouse click callback
+	glfwSetMouseButtonCallback(window, mouse_click_callback);
+	//set keyboard input callback
+	glfwSetKeyCallback(window, keyboard_input_callback);
 
 	//load GLAD
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -62,6 +66,21 @@ void processInput(GLFWwindow* window, float& deltaTime) {
 
 void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
 	gCamera->processMouseMovement(xPos, yPos);
+}
+
+void mouse_click_callback(GLFWwindow* window,int button, int action, int mods) {
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+		std::cout << "Me pressed" << std::endl;
+	}
+}
+
+void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+	//set mouse Cursor Mode
+	if (key == GLFW_KEY_M && action == GLFW_PRESS) {
+		IS_MOUSE_CAPTURED = !IS_MOUSE_CAPTURED;
+		if (IS_MOUSE_CAPTURED) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		else glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
 }
 //#######################################################################################################################
 

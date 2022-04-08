@@ -113,14 +113,16 @@ void main() {
 
 		//draw stuff here
 		//update and render cube
-		//-->CUBE
-		cube.activate();
-		cube.update();
-		cube.render();
 		//-->eCube
 		eCube.activate();
 		eCube.update();
 		eCube.render();
+
+		//-->CUBE
+		cube.activate();
+		cube.update();
+		cube.render();
+		
 		//--crosshair
 		crosshair.activate();
 		crosshair.update();

@@ -31,8 +31,12 @@ extern void INIT();
 extern void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 //process user input
 extern void processInput(GLFWwindow* window, float& deltaTime);
-//mouse callback function
+//mouse callback cursor function
 extern void mouse_callback(GLFWwindow* window, double xPos, double yPos);
+//mouse click callback function
+extern void mouse_click_callback(GLFWwindow* window,int button, int action, int mods);
+//keyboard input callback function
+extern void keyboard_input_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 //#######################################################################################################################
 //check if the ScalingBias has changed
 bool checkScalingBias();
