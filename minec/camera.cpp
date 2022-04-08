@@ -122,6 +122,7 @@ void Camera::raycast(eCube& cube) {
 
 void transparentBlock(int location,eCube& cube) {
 	gLocation = location;
+
 	if (vectorName == "WORLD") {
 		editableCubeVertexData.clear();
 		for (int i = 0; i < 36; i++) {
@@ -188,12 +189,4 @@ void Camera::modifyWorld() {
 		}
 	}
 	gMCube->configure();
-}
-
-void Camera::deleteCube() {
-	if (modifiedCubeVertexData.size() >= 36) {
-		for (int i = 0; i < 36; i++) {
-			modifiedCubeVertexData.pop_back();
-		}
-	}
 }
