@@ -22,6 +22,7 @@ public:
 
 	//modify world on mouse click
 	void modifyWorld();
+	void deleteCube();
 
 private:
 	float yaw;

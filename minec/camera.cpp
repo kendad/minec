@@ -189,3 +189,11 @@ void Camera::modifyWorld() {
 	}
 	gMCube->configure();
 }
+
+void Camera::deleteCube() {
+	if (modifiedCubeVertexData.size() >= 36) {
+		for (int i = 0; i < 36; i++) {
+			modifiedCubeVertexData.pop_back();
+		}
+	}
+}

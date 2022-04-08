@@ -79,6 +79,9 @@ void mouse_click_callback(GLFWwindow* window,int button, int action, int mods) {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		gCamera->modifyWorld();
 	}
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
+		gCamera->deleteCube();
+	}
 }
 
 void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {

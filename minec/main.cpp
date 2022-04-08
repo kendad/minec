@@ -38,8 +38,8 @@ void main() {
 	//#######################################################################################################################
 	//create cube for render
 	Cube cube("Textures/minecraft.png", false,true);
-	eCube eCube("Textures/minecraft.png", false, true);
-	mCube mCube("Textures/minecraft.png", false, true);
+	eCube eCube("Textures/copper_block.png", false, true);
+	mCube mCube("Textures/copper_block.png", false, true);
 	gMCube = &mCube;//point to the global mCube Value-->used in modifyWorld func in camera.h
 	//create Crosshair
 	Crosshair crosshair;
